@@ -56,22 +56,8 @@ bool TWButton::on_event(const GameEvent& event){
 
                 auto p = this->parent();
 
-                if(m_level == "menu"){
-                    auto parent_class = dynamic_cast <TWMenu *>(p);
-                    parent_class -> do_action(m_label);
-                }
-                else if(m_level == "cutscene-intro"){
-                    auto parent_class = dynamic_cast <TWCutscene *>(p);
-                    parent_class -> do_action(m_label);
-                }
-				else if(m_level == "result"){
-					auto parent_class = dynamic_cast <TWResult *>(p);
-					parent_class -> do_action(m_label);
-				}
-                else if(m_level == "limbo"){
-                    auto parent_class = dynamic_cast <TWLimbo *>(p);
-                    parent_class -> do_action(m_label);
-                }
+                auto parent_class =  dynamic_cast <TWLevel *>(p);
+                parent_class -> do_action(m_label);
 
                 m_click_state = NOT_CLICKING;
                 return true;
